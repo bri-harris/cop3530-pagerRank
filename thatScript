@@ -1,0 +1,25 @@
+#!/bin/bash
+clang++ -std=c++14 -o cmake-build-debug/main src/*.cpp
+
+for i in {1..3}; do
+  inputFile="test-io/input-files/${i}.txt"
+  testFile="test-io/test-files/test-${i}.txt"
+  expectedFile="test-io/expected-output/${i}.txt"
+
+  while IFS= read -r line; do
+    echo "$line"
+  done < "$inputFile" | cmake-build-debug/main > "$testFile"
+  output=$(diff "$testFile" "$expectedFile" 2>&1)
+
+  if [ $? -eq 0 ]; then
+    if [[ -z "$output" ]]; then
+      echo "Test $i: PASS"
+    else
+      echo "Test $i: FAIL"
+      echo "$output"
+    fi
+  else
+    echo "Test $i failed with following error:"
+    echo "$output"
+  fi
+done

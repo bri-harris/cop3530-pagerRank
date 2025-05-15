@@ -1,0 +1,20 @@
+//outdegrees
+facebook.com: { ufl.edu, 1 }
+gmail.com: { maps.com, 1 }
+google.com: { gmail.com, maps.com, 2 }
+maps.com: { facebook.com, 1 }
+ufl.edu: { google.com, gmail.com, 2 }
+
+//indegrees
+facebook.com: { maps.com, 1 }
+gmail.com: { google.com, ufl.edu, 2 }
+google.com: { ufl.edu, 1 }
+maps.com: { google.com, gmail.com, 2 }
+ufl.edu: { facebook.com, 1 }
+
+//rank     map<string, float> rank;
+facebook.com 0.20
+gmail.com 0.20
+google.com 0.20
+maps.com 0.20
+ufl.edu 0.20
